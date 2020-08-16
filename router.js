@@ -1,10 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-
-
-router.get('/', (req, res) => {
-    res.send('server is up and running'); // this is so when you open localhost that the server is running
-})
+router.get("/", (req, res) => {
+  res.send({ response: "Server is up and running." }).status(200); // this is so we know the server is running
+});
 
 module.exports = router;
