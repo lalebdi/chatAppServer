@@ -40,7 +40,13 @@ io.on('connection', (socket) =>{
     }); // here we want to expect the event from the backend
 
     socket.on('disconnect', ()=> {
-        console.log('User had left!!')
+        // console.log('User had left!!')
+        const user = removeUser(socket.id);
+        // to let the users know that someone left
+        if(user){
+            io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+            io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+        }
     })
 });
 
