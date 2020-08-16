@@ -12,7 +12,13 @@ const io = socketio(server);
 
 // to register clients entering and leaving is below:
 io.on('connection', (socket) =>{
-    console.log('We have a new connection!!!')
+    console.log('We have a new connection!!!');
+
+    socket.on('join', ({ name, room }, callback) =>{
+        console.log(name, room);
+        // the call back is for error handling
+        
+    })
 
     socket.on('disconnect', ()=> {
         console.log('User had left!!')
